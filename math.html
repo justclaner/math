@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>One Digit Operations</title>
+</head>
+<body>
+    <h1>Do some math!</h1>
+    <p>There will be no division. It causes so many problems like irrational numbers, divide-by-error answers, and other shit.</p>
+    <p id="question"></p>
+
+    <input type="text" class="text" id="attempt"> <br>
+    <input type="submit" value="Enter" onclick="checkAnswer()">
+
+    <p id="result"></p>
+    <p id="answerStreak">Streak: 0</p>
+
+    <script>
+// initial variables
+var numbers = [0,1,2,3,4,5,6,7,8,9];
+var operations = ["+","-","*"];
+var a = numbers[Math.floor(Math.random()*numbers.length)];
+var b = numbers[Math.floor(Math.random()*numbers.length)];
+var op = operations[Math.floor(Math.random()*operations.length)];
+
+
+//displaying the question
+    document.getElementById("question").innerHTML = a + " " + op + " " + b + "?";
+var streak = 0;
+
+//calculating the answer
+    function checkAnswer() {
+        var expression = a + op + b;
+    var answer = eval(expression);
+
+
+//displaying whether the user is correct or not
+if (document.getElementById("attempt").value == answer) {
+    document.getElementById("result").innerHTML = "Correct!";
+streak++;
+document.getElementById("answerStreak").innerHTML = "Streak: " + streak;
+newQuestion();
+} else {
+    document.getElementById("result").innerHTML = "Incorrect!";
+    streak = 0;
+    document.getElementById("answerStreak").innerHTML = "Streak: 0"
+}
+
+
+    }
+
+//new question
+
+    function newQuestion() {
+        a = numbers[Math.floor(Math.random()*numbers.length)];
+b = numbers[Math.floor(Math.random()*numbers.length)];
+op = operations[Math.floor(Math.random()*operations.length)];
+document.getElementById("question").innerHTML = a + " " + op + " " + b + "?";
+    if (op=="÷"&&b==0) {
+newQuestion();
+    }
+    
+    document.getElementById("attempt").value = "";
+    document.getElementById("attempt").innerHTML = document.getElementById("attempt").value;
+    }
+
+    </script>
+</body>
+</html>
