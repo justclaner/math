@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>One Step Equations</title>
+</head>
+<body>
+    <h1>One Step Equations</h1>
+    <h4>Addition and Subtraction Only</h4>
+    <p>Evaluate for x:</p>
+    <p id="expression"></p>
+    <p>x = ?</p>
+<input type="text" id="attempt"> <input type="submit" onclick="submitAnswer()" value="Enter">
+<p id="result">Your answer is: </p>
+<p id="streak">Streak: 0</p>
+<p id="percentScore"></p>
+
+<script>
+    var numbers = [0,1,2,3,4,5,6,7,8,9];
+    var operations = ["-","+"]
+    var a = numbers[Math.floor(Math.random()*numbers.length)];
+    var b = numbers[Math.floor(Math.random()*numbers.length)];
+    var sign = operations[Math.floor(Math.random()*operations.length)];
+    document.getElementById("expression").innerHTML = "x" + " " + sign + " " + a + " " + "=" + " " + b;
+    var streak = 0;
+    var correct=0;
+    var total=0;
+    var score;
+
+    function submitAnswer() {
+        if (sign=="+") {
+            var expression = b - a
+        var answer = eval(expression)
+        } else {
+        var expression = b + a
+        var answer = eval(expression)
+        }
+
+        if (document.getElementById("attempt").value==answer) {
+            document.getElementById("result").innerHTML = "Your answer is: Correct!";
+            streak++;
+            document.getElementById("streak").innerHTML = "Streak: " + streak;
+            correct++;
+            total++;
+            newQuestion();
+        } else {
+            document.getElementById("result").innerHTML = "Your answer is: Incorrect! (The answer was: " + answer 
+            + "). The problem you got wrong was: " + "x" + " " + sign + " " + a + " " + "=" + " " + b;
+            streak=0;
+            document.getElementById("streak").innerHTML = "Streak: " + streak;
+            total++;
+            newQuestion();
+        }
+        var score = 100*eval(correct/total);
+        if (score == 100) {
+            document.getElementById("percentScore").innerHTML = "Your score: " + score.toFixed(2) + "% (" + correct + "/" + total + "). A++";
+        } else if (score > 96) {
+            document.getElementById("percentScore").innerHTML = "Your score: " + score.toFixed(2) + "% (" + correct + "/" + total + "). A+";
+        } else if (score > 92) {
+            document.getElementById("percentScore").innerHTML = "Your score: " + score.toFixed(2) + "% (" + correct + "/" + total + "). A";
+        } else if (score > 89) {
+            document.getElementById("percentScore").innerHTML = "Your score: " + score.toFixed(2) + "% (" + correct + "/" + total + "). A-";
+        } else if (score > 86) {
+            document.getElementById("percentScore").innerHTML = "Your score: " + score.toFixed(2) + "% (" + correct + "/" + total + "). B+";
+        } else if (score > 82) {
+            document.getElementById("percentScore").innerHTML = "Your score: " + score.toFixed(2) + "% (" + correct + "/" + total + "). B";
+        } else if (score > 79) {
+            document.getElementById("percentScore").innerHTML = "Your score: " + score.toFixed(2) + "% (" + correct + "/" + total + "). B-";
+        } else if (score > 76) {
+            document.getElementById("percentScore").innerHTML = "Your score: " + score.toFixed(2) + "% (" + correct + "/" + total + "). C+";
+        } else if (score > 72) {
+            document.getElementById("percentScore").innerHTML = "Your score: " + score.toFixed(2) + "% (" + correct + "/" + total + "). C";
+        } else if (score > 69) {
+            document.getElementById("percentScore").innerHTML = "Your score: " + score.toFixed(2) + "% (" + correct + "/" + total + "). C-";
+        } else if (score > 66) {
+            document.getElementById("percentScore").innerHTML = "Your score: " + score.toFixed(2) + "% (" + correct + "/" + total + "). D+";
+        } else if (score > 62) {
+            document.getElementById("percentScore").innerHTML = "Your score: " + score.toFixed(2) + "% (" + correct + "/" + total + "). D";
+        } else if (score > 59) {
+            document.getElementById("percentScore").innerHTML = "Your score: " + score.toFixed(2) + "% (" + correct + "/" + total + "). D-";
+        } else {
+            document.getElementById("percentScore").innerHTML = "Your score: " + score.toFixed(2) + "% (" + correct + "/" + total + "). F";
+        }
+        
+
+        
+    }
+
+    function newQuestion() {
+    a = numbers[Math.floor(Math.random()*numbers.length)];
+    b = numbers[Math.floor(Math.random()*numbers.length)];
+    sign = operations[Math.floor(Math.random()*operations.length)];
+    document.getElementById("expression").innerHTML = "x" + " " + sign + " " + a + " " + "=" + " " + b;
+    document.getElementById("attempt").value = "";
+    }
+</script>
+</body>
+</html>
