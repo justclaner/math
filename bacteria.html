@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: pink;
+        }
+        button {
+            border: 0px;
+            background-color: aquamarine;
+            font-size: 14px;
+            font-family: 'Courier New', Courier, monospace;
+            width:100px;
+            height:75px;
+        }
+
+    </style>
+</head>
+<body>
+    <button onclick="spawnBacteria()">Spawn some bacteria into existence!</button>
+    <p id="bacteriaCount"></p>
+    <p>Bacteria doubles every five seconds!</p>
+    <button onclick="resetBacteria()">Reset</button>
+
+    <script>
+        var bacteria = 0.00;
+        bacteria = localStorage.getItem("bacteriaAmount");
+        
+        setTimeout(function(){
+            document.getElementById("bacteriaCount").innerHTML = "Bacteria: " + bacteria.toFixed(2);
+        },100);
+
+        function spawnBacteria() {
+        bacteria = bacteria + 1 + bacteria*0.5;
+        updateBacteria();
+        }
+
+        setInterval(function(){
+            bacteria *=2;
+        updateBacteria();
+        },5000);
+
+        function updateBacteria() {
+            document.getElementById("bacteriaCount").innerHTML = "Bacteria: " + bacteria.toFixed(2);
+            localStorage.setItem("bacteriaAmount", bacteria);
+        }
+
+        function resetBacteria() {
+            bacteria = 0;
+            document.getElementById("bacteriaCount").innerHTML = "Bacteria: " + bacteria.toFixed(2);
+        }
+    </script>
+</body>
+</html>
