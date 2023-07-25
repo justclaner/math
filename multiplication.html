@@ -87,7 +87,8 @@
 
         function checkAnswer() {
             if (userAnswer.value == "") {
-                alert("You must enter something!");
+                alert("You must enter a number!");
+                userAnswer.value = "";
             } else if (document.getElementById("answer1Prompt").value == x*y) {
                 streak++;
                 document.getElementById("streak").innerHTML = userAnswer.value + " was correct! Streak: " + streak;
